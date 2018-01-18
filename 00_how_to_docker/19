@@ -1,1 +1,1 @@
-docker run --name Abathur -v ~/Documents:/root -p 192.168.99.100:3000:3000 python:2-slim /bin/bash -c 'pip install Flask'
+echo "from flask import Flask\napp = Flask(__name__)\n@app.route('/')\ndef hello_world():\n\treturn '<h1>Hello World</h1>'" > /Users/rfriscca/Documents/hello.py && docker run -d --name Abathur -v ~/Documents:/root -p 192.168.99.100:3000:3000 python:2-slim /bin/bash -c 'pip install Flask && export FLASK_APP=/root/hello.py && flask run --host=0.0.0.0 --port=3000'
